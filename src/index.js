@@ -16,6 +16,16 @@ let initialState = [
         postTime: `465464`,
         likeCount: 0,
         isLiked: false,
+    },
+    {
+        id: 64684676576546,
+        postAuthorName: 'author',
+        authorAvatar: './favicon.ico',
+        postDate: `6456466`,
+        postText: 'text',
+        postTime: `465464`,
+        likeCount: 0,
+        isLiked: false,
     }
 ];
 

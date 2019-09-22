@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import likesIcon from './like-icon.png';
 import authorAvatar from './favicon.ico';
 import removePostButton from './delete-comment-button.png';
@@ -35,26 +35,26 @@ function Post(props) {
     )
 }
 
-Post.propTypes = {
-    post: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        postAuthorName: PropTypes.string.isRequired,
-        authorAvatar: PropTypes.string.isRequired,
-        postDate: PropTypes.string.isRequired,
-        postText: PropTypes.string.isRequired,
-        postTime: PropTypes.string.isRequired,
-        likeCount: PropTypes.number.isRequired,
-        isLiked: PropTypes.bool.isRequired,
-        commentsCount: PropTypes.number.isRequired,
-        comments: PropTypes.array.isRequired
-    }),
-    postId: PropTypes.number.isRequired,
-    likeToggle: PropTypes.func.isRequired,
-    removePostHandler: PropTypes.func.isRequired,
-    comments: PropTypes.array.isRequired,
-    addCommentHandler: PropTypes.func.isRequired,
-    removeCommentHandler: PropTypes.func.isRequired,
-    commentLikeToggle: PropTypes.func.isRequired
-}
+// Post.propTypes = {
+//     post: PropTypes.shape({
+//         id: PropTypes.number.isRequired,
+//         postAuthorName: PropTypes.string.isRequired,
+//         authorAvatar: PropTypes.string.isRequired,
+//         postDate: PropTypes.string.isRequired,
+//         postText: PropTypes.string.isRequired,
+//         postTime: PropTypes.string.isRequired,
+//         likeCount: PropTypes.number.isRequired,
+//         isLiked: PropTypes.bool.isRequired,
+//         commentsCount: PropTypes.number.isRequired,
+//         comments: PropTypes.array.isRequired
+//     }),
+//     postId: PropTypes.number.isRequired,
+//     likeToggle: PropTypes.func.isRequired,
+//     removePostHandler: PropTypes.func.isRequired,
+//     comments: PropTypes.array.isRequired,
+//     addCommentHandler: PropTypes.func.isRequired,
+//     removeCommentHandler: PropTypes.func.isRequired,
+//     commentLikeToggle: PropTypes.func.isRequired
+// }
 
 export default Post;

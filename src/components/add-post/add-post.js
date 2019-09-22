@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './add-post.css';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export class AddPost extends Component {
+class AddPost extends Component {
 
     state = {
         author: '',
@@ -59,14 +61,17 @@ export class AddPost extends Component {
                     <div className="comment-author-input">Введите текст</div>
                     <textarea id="add-post-input-text"
                         onChange={(ev) => this.setText(document.getElementById('add-post-input-text').value)}
-                    ></textarea>
+                    >
+                    </textarea>
                     <button 
                         id="add-post-button"
                         onClick={ev => {
                             ev.preventDefault();
                             const newPostAuthor = this.state.author;
                             const newPostText = this.state.text;
-                            this.formValidator(newPostAuthor, newPostText);                            
+                            // this.formValidator(newPostAuthor, newPostText);
+                            console.log(this.props.addPost);
+                            this.props.addPost(newPostAuthor, newPostText);
                         }}
                     >
                     Добавить</button>
@@ -79,3 +84,11 @@ export class AddPost extends Component {
 // AddPost.propTypes = {
 //     addPostHandler: PropTypes.func.isRequired
 // }
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state
+    }
+}
+
+export default connect(mapStateToProps, actions)(AddPost);

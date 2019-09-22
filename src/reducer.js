@@ -30,7 +30,7 @@ const reducer = (state = [], action) => {
 
     switch (action.type) {
         case 'ADD_POST':        
-            const posts = [createPost(action.payload.author, action.payload.text), ...state];
+            const posts = [ createPost(action.payload.author, action.payload.text), ...state ];
     
             let storage = JSON.stringify(posts);
             localStorage.setItem('localState', storage);
