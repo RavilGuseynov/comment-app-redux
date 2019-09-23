@@ -21,6 +21,7 @@
         #add-post-input-text {
             width: 400px;
             height: 80px;
+            resize: none;
         }
 
     #add-post-button {

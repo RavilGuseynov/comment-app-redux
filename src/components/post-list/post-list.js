@@ -4,7 +4,7 @@ import './post-list.css';
 
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 class PostList extends Component {
 
@@ -53,6 +53,6 @@ const mapStateToProps = (state) => {
     return {
         posts: state
     }
-}
+};
 
 export default connect(mapStateToProps, actions)(PostList);
