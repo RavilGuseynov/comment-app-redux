@@ -87,10 +87,10 @@ class AddPost extends Component {
 //     addPostHandler: PropTypes.func.isRequired
 // }
 
-const mapStateToProps = (state) => {
-    return {
-        posts: state
-    }
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         posts: state
+//     }
+// };
 
-export default connect(mapStateToProps, actions)(AddPost);
+export default connect(null, actions)(AddPost);

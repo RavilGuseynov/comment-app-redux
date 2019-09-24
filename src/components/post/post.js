@@ -4,10 +4,16 @@ import likesIcon from './like-icon.png';
 import authorAvatar from './favicon.ico';
 import removePostButton from './delete-comment-button.png';
 import './post.css';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 function Post(props) {
-    const {post, likeToggle, removePostHandler } = props;
-    
+    const {post, likeToggle, removePost } = props;
+
+    const removePostHandler = () => {
+        removePost(post.id);
+    };
+
     return (
         <div className="post-item">
             <div className="post-header">
@@ -16,7 +22,7 @@ function Post(props) {
                 <div className="post-date">{post.postDate}</div>
                 <div 
                     className="remove-post-button"
-                    onClick={ev => removePostHandler(post.id)}
+                    onClick={removePostHandler}
                 ><img src={removePostButton} alt="delete" /></div>
             </div>
             <div className="post-text">{post.postText}</div>
@@ -57,4 +63,10 @@ function Post(props) {
 //     commentLikeToggle: PropTypes.func.isRequired
 // }
 
-export default Post;
+const mapStateToProps = (state) => {
+    return {
+        posts: state
+    }
+};
+
+export default connect(mapStateToProps, actions)(Post);

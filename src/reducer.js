@@ -21,10 +21,10 @@ const createPost = (author, text) => {
         postTime: `${currentHour}:${currentMinutes}`,
         likeCount: 0,
         isLiked: false,
-    }
+    };
 
     return newPost
-}
+};
 
 const reducer = (state = [], action) => {
 
@@ -32,27 +32,27 @@ const reducer = (state = [], action) => {
         case 'ADD_POST':        
             const posts = [ createPost(action.payload.author, action.payload.text), ...state ];
     
-            let storage = JSON.stringify(posts);
-            localStorage.setItem('localState', storage);
-            return posts
+            // let storage = JSON.stringify(posts);
+            // localStorage.setItem('localState', storage);
+            return posts;
         
         case 'REMOVE_POST':
             const newState = [...state];
             newState.forEach(post => {
-                if (post.id === action.payload.postId) {
-                    posts.splice(posts.indexOf(post), 1)
+                if (post.id === action.payload.id) {
+                    newState.splice(newState.indexOf(post), 1)
                 }
-            })
+            });
        
-            let newStorage = JSON.stringify(newState);
-            localStorage.setItem('localState', newStorage);
+            // let newStorage = JSON.stringify(newState);
+            // localStorage.setItem('localState', newStorage);
 
-            return newState
+            return newState;
         
         default:
             return state
     }
 
-}
+};
 
 export default reducer;

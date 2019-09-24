@@ -6,7 +6,7 @@ export const addPost = (author, text) => (
             text
         }
     }
-)
+);
 
 export const removePost = (id) => (
     {
@@ -15,4 +15,4 @@ export const removePost = (id) => (
             id
         }
     }
-)
+);

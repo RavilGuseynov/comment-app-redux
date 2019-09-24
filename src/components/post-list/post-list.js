@@ -30,8 +30,7 @@ class PostList extends Component {
     
 
     render() {
-        console.log(this.props);
-        
+
         const postList = this.props.posts.map(post => {
             return (
                 <div key={post.id}>

@@ -8,8 +8,8 @@ import App from './components/app';
 
 let initialState = [
     {
-        id: 64684646,
-        postAuthorName: 'author',
+        id: 1,
+        postAuthorName: '1',
         authorAvatar: './favicon.ico',
         postDate: `6456466`,
         postText: 'text',
@@ -18,8 +18,18 @@ let initialState = [
         isLiked: false,
     },
     {
-        id: 64684676576546,
-        postAuthorName: 'author',
+        id: 2,
+        postAuthorName: '2',
+        authorAvatar: './favicon.ico',
+        postDate: `6456466`,
+        postText: 'text',
+        postTime: `465464`,
+        likeCount: 0,
+        isLiked: false,
+    },
+    {
+        id: 3,
+        postAuthorName: '3',
         authorAvatar: './favicon.ico',
         postDate: `6456466`,
         postText: 'text',
