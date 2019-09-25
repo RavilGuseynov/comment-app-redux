@@ -8,37 +8,45 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 function Post(props) {
-    const {post, likeToggle, removePost } = props;
+    const {post, removePost, toggleLike } = props;
 
     const removePostHandler = () => {
         removePost(post.id);
     };
 
+    const toggleLikeHandler = () => {
+        toggleLike(post.id);
+    };
+
     return (
         <div className="post-item">
             <div className="post-header">
-                <img src={authorAvatar} alt="author-avatar" className="post-author-avatar" />
+                <img src={authorAvatar} alt="author-avatar" className="post-author-avatar"/>
                 <div className="post-author-name">{post.postAuthorName}</div>
                 <div className="post-date">{post.postDate}</div>
-                <div 
+                <div
                     className="remove-post-button"
                     onClick={removePostHandler}
-                ><img src={removePostButton} alt="delete" /></div>
+                >
+                    <img
+                        src={removePostButton}
+                        alt="delete"
+                    />
+                </div>
             </div>
             <div className="post-text">{post.postText}</div>
             <div className="post-item-props">
                 <div className="post-time">{post.postTime}</div>
                 <div className="post-props">
                     <img
-                        onClick={ev => {likeToggle(post.id)}}
+                        onClick={toggleLikeHandler}
                         src={likesIcon} className="prop-icon" alt=""
                     />
                     <div className="post-prop-count">{post.likeCount}</div>
                 </div>
             </div>
-
         </div>
-    )
+    );
 }
 
 // Post.propTypes = {
@@ -65,7 +73,7 @@ function Post(props) {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state
+        state
     }
 };
 

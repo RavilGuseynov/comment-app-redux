@@ -16,3 +16,12 @@ export const removePost = (id) => (
         }
     }
 );
+
+export const toggleLike = (id) => (
+    {
+        type: 'TOGGLE_LIKE',
+        payload: {
+            id
+        }
+    }
+);

@@ -12,7 +12,7 @@ const createPost = (author, text) => {
         currentMinutes = '0' + currentMinutes;
     }
 
-    const newPost = {
+    return  {
         id: uuidv4(),
         postAuthorName: author,
         authorAvatar: './favicon.ico',
@@ -20,10 +20,18 @@ const createPost = (author, text) => {
         postText: text,
         postTime: `${currentHour}:${currentMinutes}`,
         likeCount: 0,
-        isLiked: false,
+        liked: false,
     };
+};
 
-    return newPost
+const likePost = (post) => {
+    post.likeCount++;
+    post.liked = !post.liked;
+};
+
+const dislikePost = (post) => {
+    post.likeCount--;
+    post.liked = !post.liked;
 };
 
 const reducer = (state = [], action) => {
@@ -48,7 +56,17 @@ const reducer = (state = [], action) => {
             // localStorage.setItem('localState', newStorage);
 
             return newState;
-        
+
+        case 'TOGGLE_LIKE':
+            const currentState = [...state];
+            currentState.forEach(post => {
+                if (post.id === action.payload.id) {
+                    !post.liked ? likePost(post) : dislikePost(post);
+                }
+            });
+
+            return currentState;
+
         default:
             return state
     }
