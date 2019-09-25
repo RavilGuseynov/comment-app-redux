@@ -15,7 +15,7 @@ let initialState = [
         postText: 'text',
         postTime: `465464`,
         likeCount: 0,
-        isLiked: false,
+        liked: false,
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ let initialState = [
         postText: 'text',
         postTime: `465464`,
         likeCount: 0,
-        isLiked: false,
+        liked: false,
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ let initialState = [
         postText: 'text',
         postTime: `465464`,
         likeCount: 0,
-        isLiked: false,
+        liked: false,
     }
 ];
 
@@ -43,7 +43,7 @@ let initialState = [
 //     initialState = JSON.parse(localStorage.getItem('localState'));
 // }
 
-const store = createStore(reducer, initialState);
+export const store = createStore(reducer, initialState);
 
 ReactDOM.render(
     <Provider store={store}>
