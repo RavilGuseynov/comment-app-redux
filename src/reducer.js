@@ -40,8 +40,8 @@ const reducer = (state = [], action) => {
         case 'ADD_POST':        
             const posts = [ createPost(action.payload.author, action.payload.text), ...state ];
     
-            let storage = JSON.stringify(posts);
-            localStorage.setItem('localState', storage);
+            // let storage = JSON.stringify(posts);
+            // localStorage.setItem('localState', storage);
             return posts;
         
         case 'REMOVE_POST':
