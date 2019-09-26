@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './add-post.css';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { addPost } from '../../actions';
 
 class AddPost extends Component {
 
@@ -11,44 +11,26 @@ class AddPost extends Component {
         text: ''
     };
 
-    setName = (newAuthor) => {
-        let author = this.state.author;
-        author = newAuthor;
+    setName = (newAuthor) => this.setState({ author: newAuthor });
 
-        this.setState({ author });
+    setText = (newText) => this.setState({ text: newText });
+
+    clearState = () => this.setState({ author: '', text: '' });
+
+    validator = () => {
+        return !!(this.state.author && this.state.text)
     };
-
-    setText = (newText) => {
-        let text = this.state.text;
-        text = newText;
-
-        this.setState({ text });
-    };
-
-    clearState = () => {
-        let { author, text } = this.state;
-        author = '';
-        text = '';
-        this.setState({ author, text });
-    };
-
-    // formValidator = (author, text) => {
-    //     const addPostHandler = this.props.addPostHandler;
-    //     if (author === '' || text === '') {
-    //         alert('Заполните все поля!')
-    //     }
-    //     else {
-    //         addPostHandler(author, text);
-    //         this.clearState();
-    //     }
-    // };
 
     addPostHandler = (e) => {
         e.preventDefault();
-        const newPostAuthor = this.state.author;
-        const newPostText = this.state.text;
-        this.props.addPost(newPostAuthor, newPostText);
-        this.clearState()
+        if (this.validator()) {
+            const newPostAuthor = this.state.author;
+            const newPostText = this.state.text;
+            this.props.addPost(newPostAuthor, newPostText);
+            this.clearState();
+        } else {
+            alert('Заполните все поля!');
+        }
     };
 
 
@@ -83,14 +65,14 @@ class AddPost extends Component {
     }    
 }
 
-// AddPost.propTypes = {
-//     addPostHandler: PropTypes.func.isRequired
-// }
+AddPost.propTypes = {
+    addPost: PropTypes.func.isRequired
+};
 
-// const mapStateToProps = (state) => {
-//     return {
-//         posts: state
-//     }
-// };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: (author, text) => dispatch(addPost(author, text))
+    }
+};
 
-export default connect(null, actions)(AddPost);
+export default connect(null, mapDispatchToProps)(AddPost);

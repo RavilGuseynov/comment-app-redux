@@ -3,22 +3,15 @@ import uuidv4 from 'uuid/v4';
 const createPost = (author, text) => {
     let date = new Date();
     
-    const currentDate = date.getDate();
-    let currentMonth = date.getMonth();
-    const currentYear = date.getFullYear();
-    const currentHour = date.getHours();
-    let currentMinutes = date.getMinutes();
-    if ( (currentMinutes + '').length === 1 ) {
-        currentMinutes = '0' + currentMinutes;
-    }
+    const currentMinutes = date.getMinutes() < 10 ? date.getMinutes() + 1 : date.getMinutes();
 
     return  {
         id: uuidv4(),
         postAuthorName: author,
         authorAvatar: './favicon.ico',
-        postDate: `${++currentMonth}/${currentDate}, ${currentYear}`,
+        postDate: `${1 + date.getMonth()}/${date.getDate()}, ${date.getFullYear()}`,
         postText: text,
-        postTime: `${currentHour}:${currentMinutes}`,
+        postTime: `${date.getHours()}:${currentMinutes}`,
         likeCount: 0,
         liked: false,
     };
@@ -38,11 +31,7 @@ const reducer = (state = [], action) => {
 
     switch (action.type) {
         case 'ADD_POST':        
-            const posts = [ createPost(action.payload.author, action.payload.text), ...state ];
-    
-            // let storage = JSON.stringify(posts);
-            // localStorage.setItem('localState', storage);
-            return posts;
+            return [ createPost(action.payload.author, action.payload.text), ...state ];
         
         case 'REMOVE_POST':
             const newState = [...state];
@@ -51,9 +40,6 @@ const reducer = (state = [], action) => {
                     newState.splice(newState.indexOf(post), 1)
                 }
             });
-       
-            // let newStorage = JSON.stringify(newState);
-            // localStorage.setItem('localState', newStorage);
 
             return newState;
 

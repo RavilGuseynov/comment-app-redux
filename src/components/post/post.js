@@ -1,11 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import likesIcon from './like-icon.png';
 import authorAvatar from './favicon.ico';
 import removePostButton from './delete-comment-button.png';
 import './post.css';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { removePost, toggleLike} from '../../actions';
 
 function Post(props) {
     const {post, removePost, toggleLike } = props;
@@ -49,32 +49,33 @@ function Post(props) {
     );
 }
 
-// Post.propTypes = {
-//     post: PropTypes.shape({
-//         id: PropTypes.number.isRequired,
-//         postAuthorName: PropTypes.string.isRequired,
-//         authorAvatar: PropTypes.string.isRequired,
-//         postDate: PropTypes.string.isRequired,
-//         postText: PropTypes.string.isRequired,
-//         postTime: PropTypes.string.isRequired,
-//         likeCount: PropTypes.number.isRequired,
-//         isLiked: PropTypes.bool.isRequired,
-//         commentsCount: PropTypes.number.isRequired,
-//         comments: PropTypes.array.isRequired
-//     }),
-//     postId: PropTypes.number.isRequired,
-//     likeToggle: PropTypes.func.isRequired,
-//     removePostHandler: PropTypes.func.isRequired,
-//     comments: PropTypes.array.isRequired,
-//     addCommentHandler: PropTypes.func.isRequired,
-//     removeCommentHandler: PropTypes.func.isRequired,
-//     commentLikeToggle: PropTypes.func.isRequired
-// }
+Post.propTypes = {
+    post: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        postAuthorName: PropTypes.string.isRequired,
+        authorAvatar: PropTypes.string.isRequired,
+        postDate: PropTypes.string.isRequired,
+        postText: PropTypes.string.isRequired,
+        postTime: PropTypes.string.isRequired,
+        likeCount: PropTypes.number.isRequired,
+        liked: PropTypes.bool.isRequired
+    }),
+    toggleLike: PropTypes.func.isRequired,
+    removePost: PropTypes.func.isRequired,
+    postList: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {
-        state
+        postList: state
     }
 };
 
-export default connect(mapStateToProps, actions)(Post);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removePost: (id) => dispatch(removePost(id)),
+        toggleLike: (id) => dispatch(toggleLike(id))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
