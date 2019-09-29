@@ -7,15 +7,17 @@ const createPost = (author, text) => {
 
     return  {
         id: uuidv4(),
-        postAuthorName: author,
+        postAuthorName: validateText(author),
         authorAvatar: './favicon.ico',
         postDate: `${1 + date.getMonth()}/${date.getDate()}, ${date.getFullYear()}`,
-        postText: text,
+        postText: validateText(text),
         postTime: `${date.getHours()}:${currentMinutes}`,
         likeCount: 0,
         liked: false,
     };
 };
+
+const validateText = (value) => value.replace(/(<(\/?[^>]+)>)/g, '');
 
 const likePost = (post) => {
     post.likeCount++;
