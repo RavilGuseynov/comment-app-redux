@@ -17,7 +17,12 @@ const createPost = (author, text) => {
     };
 };
 
-const validateText = (value) => value.replace(/(<(\/?[^>]+)>)/g, '');
+const validateText = (value) => {
+    return value
+        .replace(/<!--/g, '')
+        .replace(/-->/g, '')
+        .replace(/(<(\/?[^>]+)>)/g, '');
+};
 
 const likePost = (post) => {
     post.likeCount++;
